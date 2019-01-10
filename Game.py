@@ -1,12 +1,18 @@
+from typing import List, Any
+
+from Player import Player
 from pg_engine import *
 from Controller import *  # new import
 from EMG import *  # new import
 from Player import *
 from Enemy import *
+from Animation import *
 
 
 ####################################################################################################################
-class game:
+class Game:
+    gameObjects = []  # type: List[GameObject]
+    player = ...  # type: Player
 
     ####################################################################################################################
     def __init__(self):
@@ -24,17 +30,24 @@ class game:
 
     ####################################################################################################################
     def start(self):
-        self.player = Player(150, 300, 464, 188, pygame.image.load('invader1.jpeg'))
-        self.player.set_animation(2, 1)
+        self.player = Player(160, 240, 480, 480)
+        self.player.set_animation(
+            Animation(pygame.image.load("moon.png"), 5, 6, start_no=16, end_no=30, speed=48, is_turn=False))
+        self.gameObjects.append(self.player)
+
+        player1 = Player(480, 240, 480, 480)
+        player1.set_animation(
+            Animation(pygame.image.load("moon.png"), 5, 6, start_no=16, end_no=30, speed=48, is_turn=True))
+        self.gameObjects.append(player1)
 
     ####################################################################################################################
     def update(self):
         # 画面初期化
         screen.fill(pygame.color.THECOLORS['black'])
-        self.player.update(screen)
-
+        for g in self.gameObjects:
+            g.update(screen)
 
 
 ####################################################################################################################
 if __name__ == '__main__':
-    g = game()
+    g = Game()
