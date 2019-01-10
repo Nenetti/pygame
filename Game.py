@@ -25,7 +25,7 @@ class Game:
 
             self.update()
             pygame.display.update()
-            pygame.time.delay(16)  # 60 FPS
+            pygame.time.delay(Engine.FRAME_RATE)  # 60 FPS
         pygame.quit()
 
     ####################################################################################################################
