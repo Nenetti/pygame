@@ -39,7 +39,6 @@ class Animation:
             self.no += self.no_increment
             if self.no <= self.start_no or self.no >= self.end_no:
                 # リセット
-                print(self.no, self.start_no, self.end_no)
                 if self.is_loop:
                     # ループ
                     self.no_increment *= -1
