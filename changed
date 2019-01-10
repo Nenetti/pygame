@@ -1,0 +1,10 @@
+python3系からpython2系に書き直す際の注意点
+
+1. コードのはじめに
+	# coding:utf-8
+	
+2. super()はpython2系では
+	super(継承先クラス名, self)
+
+3. 型指定がpython2系ではpython3系の書き方では通らない
+	型指定は消す
