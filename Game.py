@@ -12,7 +12,6 @@ from Animation import *
 ####################################################################################################################
 class Game:
     gameObjects = []  # type: List[GameObject]
-    player = ...  # type: Player
 
     ####################################################################################################################
     def __init__(self):
@@ -30,15 +29,15 @@ class Game:
 
     ####################################################################################################################
     def start(self):
-        self.player = Player(160, 240, 480, 480)
-        self.player.set_animation(
+        player = Player(160, 240, 480, 480)
+        player.set_animation(
             Animation(pygame.image.load("moon.png"), 5, 6, start_no=16, end_no=30, speed=48, is_turn=False))
-        self.gameObjects.append(self.player)
+        self.gameObjects.append(player)
 
-        player1 = Player(480, 240, 480, 480)
-        player1.set_animation(
+        obj = GameObject(480, 240, 480, 480)
+        obj.set_animation(
             Animation(pygame.image.load("moon.png"), 5, 6, start_no=16, end_no=30, speed=48, is_turn=True))
-        self.gameObjects.append(player1)
+        self.gameObjects.append(obj)
 
     ####################################################################################################################
     def update(self):

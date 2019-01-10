@@ -26,7 +26,6 @@ class GameObject:
         self.y += speed_y
 
     def update(self, screen: pygame.Surface):
-        self.calc_speed(screen)
         if self.is_animation:
             self.animation.update(screen, self.x-self.width/2, self.y-self.height/2)
         else:
