@@ -8,18 +8,11 @@ class Engine:
     s = 0  # type: float
     e = 0  # type: float
 
-    @staticmethod
-    def start():
-        global s
-        s = time.time()
+    def start(self):
+        self.s = time.time()
 
-    @staticmethod
-    def end():
-        global s
-        global e
-        e = time.time()
-    @staticmethod
-    def get_time():
-        global s
-        global e
-        return e - s
+    def end(self):
+        self.e = time.time()
+
+    def get_time(self):
+        return self.e - self.s
