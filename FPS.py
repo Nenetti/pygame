@@ -4,7 +4,7 @@ FPS = 60
 FRAME_RATE = int(1000 / FPS)
 
 
-class Engine:
+class FPS:
     s = 0  # type: float
     e = 0  # type: float
 

@@ -1,5 +1,4 @@
 from Keyboard import *
-import pygame
 from GameObject import *
 
 

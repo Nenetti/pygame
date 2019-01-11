@@ -17,9 +17,15 @@ class GameObject:
     def set_animation(self, animation: Animation):
         self.is_animation = True
         self.animation = animation
+        self.width = animation.width
+        self.height = animation.height
 
     def set_image(self, image: pygame.Surface):
         self.image = image
+        self.width = image.get_width()
+        self.height = image.get_height()
+        self.animation = None
+        self.is_animation = False
 
     def move(self, speed_x: float, speed_y: float):
         self.x += speed_x
@@ -27,6 +33,7 @@ class GameObject:
 
     def update(self, screen: pygame.Surface):
         if self.is_animation:
-            self.animation.update(screen, self.x-self.width/2, self.y-self.height/2)
+            self.animation.update(screen, self.x - self.width / 2, self.y - self.height / 2)
         else:
-            screen.blit(self.image, [self.x-self.width/2, self.y-self.height/2])
+            if self.image is not None:
+                screen.blit(self.image, [self.x - self.width / 2, self.y - self.height / 2])
