@@ -142,6 +142,9 @@ class TranslateAnimation(Animation):
             if self.is_loop:
                 self.t = 0
             else:
+                #のちほど修正
+                self.x = self.sx
+                self.y = self.sy
                 self.is_end = True
 
     def get_translate(self):
