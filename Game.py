@@ -10,6 +10,7 @@ from Animation import *
 from FPS import *
 from BackGround import *
 
+
 ####################################################################################################################
 class Game:
     screen = ...  # type: pygame.Surface
@@ -39,18 +40,15 @@ class Game:
     ####################################################################################################################
     def start(self):
 
-        background1 = BackGround(-self.screen.get_width(), 0, self.screen.get_width(), self.screen.get_height(), 1000,
-                                pygame.image.load("image/back1.png"))
+        background1 = BackGround(self.screen, 0, 0, 2880,
+                                 pygame.image.load("image/back1.png"))
         self.gameObjects.append(background1)
-        background2 = BackGround(0, 0, self.screen.get_width(), self.screen.get_height(), 1000,
-                                 pygame.image.load("image/back1.png"))
-        self.gameObjects.append(background2)
-        background3 = BackGround(self.screen.get_width(), 0, self.screen.get_width(), self.screen.get_height(), 1000,
-                                 pygame.image.load("image/back1.png"))
-        self.gameObjects.append(background3)
 
+        field = BackGround(self.screen, 0, 320, 2880,
+                                 pygame.image.load("image/field.png"))
+        self.gameObjects.append(field)
 
-        player = Player(160, 240, 480, 480)
+        player = Player(160, 290, 480, 480)
         # player.set_animation(
         #    ImageAnimation(pygame.image.load("image/player_a.png"), 10, 3, start_no=2, end_no=7, speed=72, is_turn=True))
         player.set_animation(
@@ -63,10 +61,7 @@ class Game:
         player.action2 = ImageAnimation(
             pygame.image.load("image/action2_1.png"), split_x=13, split_y=1, frame=Player.ACTION2_FRAME, is_loop=False)
 
-        # player.set_animation(RotateAnimation(pygame.image.load("image/t.png"), 360, frame=1000, is_loop=False))
-        # player.set_image(pygame.image.load("image/magic.png"))
         self.gameObjects.append(player)
-
 
 
 
@@ -75,10 +70,10 @@ class Game:
         # 画面初期化
         self.screen.fill(pygame.color.THECOLORS['white'])
 
-        #background = pygame.transform.scale(pygame.image.load("image/back1.png"), (self.screen.get_width(),
+        # background = pygame.transform.scale(pygame.image.load("image/back1.png"), (self.screen.get_width(),
         #                                                                           self.screen.get_height()))
 
-        #self.screen.blit(background, (0, 0))
+        # self.screen.blit(background, (0, 0))
 
         for g in self.gameObjects:
             g.update(self.screen)
