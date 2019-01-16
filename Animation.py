@@ -4,6 +4,8 @@ from FPS import *
 
 class Animation:
 
+    image = None
+
     def __init__(self):
         self.is_end = False
 
@@ -47,8 +49,8 @@ class ImageAnimation(Animation):
             self.calc_animation()
             self.temp_x = int(self.no % self.split_x) * self.width
             self.temp_y = int(self.no / self.split_x) * self.height
-        screen.blit(self.image, [x, y],
-                    [self.temp_x, self.temp_y, self.width, self.height])
+
+        screen.blit(self.image, [x-self.width/2, y-self.height/2], [self.temp_x, self.temp_y, self.width, self.height])
 
     def calc_animation(self):
         self.temp_speed += FRAME_RATE
@@ -74,46 +76,6 @@ class ImageAnimation(Animation):
         super().reset()
         self.no = self.start_no
         self.no_increment = 1
-
-
-class RotateAnimation(Animation):
-
-    def __init__(self, image: pygame.Surface,
-                 angle: float, frame: int = 1000, is_loop: bool = False, is_turn: bool = False):
-        super().__init__()
-        self.image = image
-        self.width = image.get_width()
-        self.height = image.get_height()
-        self.angle = angle
-        self.frame = frame
-        self.is_loop = is_loop
-        self.is_turn = is_turn
-        self.temp_angle = 0
-        self.angle_increment = angle / frame
-        self.temp_image = None
-        self.temp_rect = None
-
-    def update(self, screen: pygame.Surface, x: int, y: int):
-        if not self.is_end:
-            self.calc_animation()
-            image = pygame.transform.rotate(self.image, self.temp_angle)
-            rect = image.get_rect()
-            rect.center = (x + self.width / 2, y + self.height / 2)
-            screen.blit(image, rect)
-        else:
-            self.temp_rect.center = (x + self.width / 2, y + self.height / 2)
-            screen.blit(self.temp_image, self.temp_rect)
-
-    def calc_animation(self):
-        self.temp_angle += self.angle_increment * FRAME_RATE
-        if self.temp_angle >= self.angle:
-            if self.is_loop:
-                self.temp_angle = 0
-            else:
-                self.temp_angle = self.angle
-                self.temp_image = pygame.transform.rotate(self.image, self.temp_angle)
-                self.temp_rect = self.temp_image.get_rect()
-                self.is_end = True
 
 
 class TranslateAnimation(Animation):

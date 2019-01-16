@@ -9,7 +9,10 @@ class Keyboard(Controller):
 
     def get_input(self):
         keys = pygame.key.get_pressed()
-        
+
+        if keys[pygame.K_UP] or keys[pygame.K_DOWN]:
+            return Controller.Input.Launch
+
         if keys[pygame.K_LEFT] & keys[pygame.K_RIGHT]:
             return Controller.Input.Launch
 
