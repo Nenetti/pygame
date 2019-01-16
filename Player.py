@@ -2,6 +2,7 @@ from Keyboard import *
 from GameObject import *
 from Animation import *
 import numpy as np
+from EMG import *
 
 
 class Player(GameObject):
@@ -24,7 +25,8 @@ class Player(GameObject):
 
     def __init__(self, x: float, y: float, width: float, height: float, image: pygame.Surface = None):
         super().__init__(x, y, width, height, image)
-        self.Controller = Keyboard()
+        #self.Controller = Keyboard()
+        self.Controllert = EMG(threshold_left=0.6, threshold_right=0.6)
         self.can_input = True
 
     def update(self, screen: pygame.Surface):
